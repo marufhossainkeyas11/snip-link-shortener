@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Snip — Fast Link Shortener</title>
+<meta name="description" content="A fast, no-login link shortener. Paste a long URL, get a short one instantly.">
+<meta name="theme-color" content="#0B0D10">
+
+<!-- PWA -->
+<link rel="manifest" href="./manifest.json">
+<link rel="icon" type="image/png" sizes="32x32" href="./icons/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="./icons/favicon-16.png">
+<link rel="icon" type="image/png" sizes="512x512" href="./icons/icon-512.png">
+<link rel="apple-touch-icon" href="./icons/icon-192.png">
+
+<!-- Open Graph -->
+<meta property="og:title" content="Snip — Fast Link Shortener">
+<meta property="og:description" content="Paste a long URL, get a short one instantly. No login, no tracking.">
+<meta property="og:type" content="website">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="./style.css">
+</head>
+<body>
+
+<div class="grain"></div>
+
+<header class="topbar">
+  <div class="brand">
+    <span class="brand-mark">//</span><span class="brand-name">snip</span>
+  </div>
+  <div class="topbar-actions">
+    <button id="installBtn" class="btn-ghost" hidden>Install app</button>
+    <a class="btn-ghost" href="https://github.com/marufhossainkeyas11/snip" target="_blank" rel="noopener">GitHub</a>
+  </div>
+</header>
+
+<main>
+  <section class="hero">
+    <p class="eyebrow">paste → shorten → done</p>
+    <h1>Turn long links<br>into <span class="accent">short</span> ones.</h1>
+    <p class="sub">No login. No ads. No expiry. Just a link in, a link out.</p>
+
+    <form id="shortenForm" class="shorten-box" autocomplete="off">
+      <span class="input-caret">→</span>
+      <input
+        id="urlInput"
+        type="text"
+        inputmode="url"
+        placeholder="https://example.com/a/very/long/path?that=needs&shrinking=true"
+        aria-label="Long URL to shorten"
+        required
+      >
+      <button type="submit" id="shortenBtn">
+        <span class="btn-label">Shorten</span>
+        <span class="btn-spinner" hidden></span>
+      </button>
+    </form>
+
+    <p id="formError" class="form-error" hidden></p>
+
+    <div id="resultCard" class="result-card" hidden>
+      <div class="result-row">
+        <div class="result-url">
+          <span id="resultBase"></span><span id="resultHash" class="hash"></span>
+        </div>
+        <div class="result-actions">
+          <button id="copyBtn" class="btn-primary" type="button">Copy</button>
+          <a id="openBtn" class="btn-ghost" href="#" target="_blank" rel="noopener">Open</a>
+        </div>
+      </div>
+      <p class="result-source" id="resultSource"></p>
+    </div>
+  </section>
+
+  <section class="history-section">
+    <div class="history-head">
+      <h2>History</h2>
+      <button id="clearHistory" class="btn-text" hidden>Clear all</button>
+    </div>
+    <div id="historyList" class="history-list">
+      <div class="history-empty" id="historyEmpty">
+        <span class="empty-icon">◌</span>
+        <p>Shortened links will show up here.</p>
+        <p class="empty-sub">Stored only in this browser — nothing leaves your device except the URL itself.</p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <p>Built by <a href="https://github.com/marufhossainkeyas11" target="_blank" rel="noopener">Maruf</a> · Links stored locally in your browser</p>
+</footer>
+
+<div id="toast" class="toast"></div>
+
+<script src="./app.js"></script>
+</body>
+</html>
